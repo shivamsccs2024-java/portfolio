@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me | Full Stack Developer</title>
+  <meta name="description" content="About section of Full Stack Developer portfolio - profile image, bio, experience, and overview.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              500: '#6366f1',
+              600: '#4f46e5',
+            },
+            accent: {
+              cyan: '#06b6d4',
+              pink: '#ec4899',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col justify-between relative selection:bg-indigo-500 selection:text-white">
+
+  <!-- Ambient Light Orbs -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+
+  <!-- ==========================================
+       TOP NAVIGATION BAR
+       ========================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-cyan-400 p-0.5 shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+          <div class="w-full h-full bg- [#0b0f19] rounded-[10px] flex items-center justify-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 text-lg">
+            &lt;/&gt;
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <span id="nav-brand-name" class="font-bold text-lg text-white group-hover:text-indigo-400 transition-colors">Developer</span>
+          <span class="text-xs text-indigo-400 font-mono tracking-wider">FULL STACK</span>
+        </div>
+      </a>
+
+      <!-- Desktop Page Navigation Links -->
+      <nav class="hidden md:flex items-center gap-2 text-sm font-medium">
+        <a href="index.html" class="px-3.5 py-2 rounded-xl bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 font-semibold">About</a>
+        <a href="skills.html" class="px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">Skills</a>
+        <a href="experience.html" class="px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">Experience</a>
+        <a href="projects.html" class="px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">Projects</a>
+        <a href="education.html" class="px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">Education</a>
+        <a href="hobbies.html" class="px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">Hobbies</a>
+        <a href="contact.html" class="px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">Contact</a>
+      </nav>
+
+      <!-- Right Action: Admin Page Button & Mobile Toggle -->
+      <div class="flex items-center gap-4">
+        <a href="admin.html" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg bg-indigo-500/10 text-indigo-300 hover:bg-indigo-500/20 border border-indigo-500/30 hover:border-indigo-500/60 transition-all shadow-sm">
+          <i class="fa-solid fa-gear text-indigo-400"></i>
+          <span>Admin Page</span>
+        </a>
+
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-400 hover:text-white focus:outline-none" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-slate-800 px-6 py-5 flex flex-col gap-3 text-sm font-medium text-slate-300">
+      <a href="index.html" class="mobile-nav-link text-indigo-400 font-bold">About</a>
+      <a href="skills.html" class="mobile-nav-link hover:text-indigo-400">Skills & Tools</a>
+      <a href="experience.html" class="mobile-nav-link hover:text-indigo-400">Experience</a>
+      <a href="projects.html" class="mobile-nav-link hover:text-indigo-400">Projects</a>
+      <a href="education.html" class="mobile-nav-link hover:text-indigo-400">Education</a>
+      <a href="hobbies.html" class="mobile-nav-link hover:text-indigo-400">Hobbies</a>
+      <a href="contact.html" class="mobile-nav-link hover:text-indigo-400">Contact</a>
+      <div class="pt-3 border-t border-slate-800">
+        <a href="admin.html" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-lg bg-indigo-600 text-white font-semibold text-xs shadow-md">
+          <i class="fa-solid fa-gear"></i> Admin Dashboard
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       MAIN CONTENT: ABOUT SECTION PAGE
+       ========================================== -->
+  <main class="flex-1 pt-32 pb-20 md:pt-40 md:pb-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      
+      <!-- Left Column: Details about me -->
+      <div class="lg:col-span-7 flex flex-col gap-6 text-left">
+        
+        <!-- Status Pill -->
+        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-medium text-indigo-300 w-max">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span id="hero-availability">Available for Full Stack Opportunities</span>
+        </div>
+
+        <!-- Role & Name -->
+        <div>
+          <h2 id="about-role" class="text-indigo-400 font-mono tracking-wide uppercase text-sm sm:text-base font-semibold mb-2">
+            Full Stack Developer
+          </h2>
+          <h1 id="about-name" class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+            Alex Rivera
+          </h1>
+        </div>
+
+        <!-- Hero Tagline -->
+        <p id="about-tagline" class="text-lg sm:text-xl text-slate-300 font-light leading-relaxed">
+          Crafting resilient, high-performance web applications and delightful digital experiences from end to end.
+        </p>
+
+        <!-- Details About Me (Bio Narrative) -->
+        <div class="bg-slate-900/60 p-6 sm:p-8 rounded-3xl border border-slate-800/80 backdrop-blur-md space-y-3">
+          <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+            <i class="fa-solid fa-user-astronaut text-indigo-400"></i> Details About Me
+          </h3>
+          <p id="about-bio" class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            I am a passionate Full Stack Developer with expertise in modern JavaScript ecosystems, responsive web design, RESTful microservices, and database architecture. I specialize in turning complex problems into elegant, robust, and performant digital solutions. Currently exploring cloud infrastructure, automated testing, and next-generation UI interactions.
+          </p>
+        </div>
+
+        <!-- Key Metrics Cards -->
+        <div class="grid grid-cols-3 gap-4 pt-2">
+          <div class="glass-panel p-4 rounded-2xl text-center">
+            <div id="stat-experience" class="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">3+</div>
+            <div class="text-xs text-slate-400 mt-1 uppercase font-medium">Years Experience</div>
+          </div>
+          <div class="glass-panel p-4 rounded-2xl text-center">
+            <div id="stat-projects" class="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">25+</div>
+            <div class="text-xs text-slate-400 mt-1 uppercase font-medium">Projects Built</div>
+          </div>
+          <div class="glass-panel p-4 rounded-2xl text-center">
+            <div id="stat-clients" class="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-indigo-400">20+</div>
+            <div class="text-xs text-slate-400 mt-1 uppercase font-medium">Happy Clients</div>
+          </div>
+        </div>
+
+        <!-- Action CTAs -->
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <a href="projects.html" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600 text-white font-semibold text-sm shadow-lg shadow-indigo-500/25 transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+            <span>View Projects</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+          <a href="skills.html" class="px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2">
+            <i class="fa-solid fa-chart-simple text-cyan-400"></i>
+            <span>Explore Skills & Tools</span>
+          </a>
+          <a href="contact.html" class="px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-semibold text-sm transition-all flex items-center gap-2">
+            <i class="fa-solid fa-envelope text-indigo-400"></i>
+            <span>Contact Me</span>
+          </a>
+          <a id="about-github" href="https://github.com" target="_blank" class="w-12 h-12 rounded-xl glass-panel flex items-center justify-center text-slate-400 hover:text-white hover:border-indigo-500 transition-all" title="GitHub Profile">
+            <i class="fa-brands fa-github text-lg"></i>
+          </a>
+          <a id="about-linkedin" href="https://linkedin.com" target="_blank" class="w-12 h-12 rounded-xl glass-panel flex items-center justify-center text-slate-400 hover:text-white hover:border-cyan-400 transition-all" title="LinkedIn Profile">
+            <i class="fa-brands fa-linkedin-in text-lg"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Profile Image & Floating Cards -->
+      <div class="lg:col-span-5 flex justify-center relative">
+        <div class="relative w-72 h-72 sm:w-88 sm:h-88 md:w-96 md:h-96">
+          
+          <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-indigo-600 via-cyan-500 to-pink-500 blur-2xl opacity-30 animate-pulse"></div>
+          
+          <div class="relative w-full h-full rounded-3xl overflow-hidden border-2 border-indigo-500/30 p-2 bg-slate-900/80 shadow-2xl">
+            <img id="about-image" src="uploads/profile.jpg" alt="Full Stack Developer" class="w-full h-full object-cover rounded-2xl">
+          </div>
+
+          <!-- Floating Badges -->
+          <div class="absolute -bottom-6 -left-6 glass-panel px-4 py-3 rounded-2xl flex items-center gap-3 shadow-xl animate-float">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <div>
+              <div class="text-xs text-slate-400 font-medium">Clean Architecture</div>
+              <div class="text-xs font-bold text-white">Full Stack Engineering</div>
+            </div>
+          </div>
+
+          <div class="absolute -top-6 -right-6 glass-panel px-4 py-3 rounded-2xl flex items-center gap-3 shadow-xl animate-float" style="animation-delay: 2s;">
+            <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div>
+              <div class="text-xs text-slate-400 font-medium">Fast Performance</div>
+              <div class="text-xs font-bold text-white">Modern Web Standards</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="py-8 border-t border-slate-900 bg-slate-950 text-slate-400 text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="font-bold text-white text-base">&lt;Full Stack Developer /&gt;</span>
+        <span class="text-xs text-slate-500">&copy; <span id="footer-year">2026</span> All rights reserved.</span>
+      </div>
+      <div class="flex items-center gap-5 text-xs">
+        <a href="index.html" class="text-indigo-400 font-semibold">About</a>
+        <a href="skills.html" class="hover:text-white transition-colors">Skills</a>
+        <a href="experience.html" class="hover:text-white transition-colors">Experience</a>
+        <a href="projects.html" class="hover:text-white transition-colors">Projects</a>
+        <a href="education.html" class="hover:text-white transition-colors">Education</a>
+        <a href="hobbies.html" class="hover:text-white transition-colors">Hobbies</a>
+        <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+        <a href="admin.html" target="_blank" class="text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1">
+          <i class="fa-solid fa-gear text-xs"></i> Admin
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast-container"></div>
+  <script src="js/portfolio.js"></script>
+</body>
+</html>

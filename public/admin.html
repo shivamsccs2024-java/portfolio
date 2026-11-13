@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Portfolio Manager</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca'
+            },
+            accent: {
+              cyan: '#06b6d4',
+              pink: '#ec4899',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Shared Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-[#0b0f19] text-slate-100 min-h-screen font-sans">
+
+  <!-- ==========================================
+       LOGIN OVERLAY SCREEN (Shown when not authenticated)
+       ========================================== -->
+  <div id="login-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#0b0f19]/95 backdrop-blur-xl">
+    <div class="w-full max-w-md glass-panel p-8 rounded-3xl border border-indigo-500/30 shadow-2xl relative">
+      <div class="text-center mb-8">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-indigo-500 to-cyan-400 p-0.5 mx-auto mb-4 shadow-lg shadow-indigo-500/20">
+          <div class="w-full h-full bg-[#0b0f19] rounded-[14px] flex items-center justify-center text-2xl text-indigo-400">
+            <i class="fa-solid fa-lock"></i>
+          </div>
+        </div>
+        <h2 class="text-2xl font-extrabold text-white">Portfolio Admin</h2>
+        <p class="text-xs text-slate-400 mt-1">Authenticate to manage skills, projects, and details.</p>
+        <p class="text-xs text-indigo-400 font-mono mt-2 bg-indigo-500/10 py-1 px-3 rounded-full inline-block">Default Password: <strong>admin123</strong></p>
+      </div>
+
+      <form id="admin-login-form" class="space-y-4">
+        <div>
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Admin Password</label>
+          <div class="relative">
+            <input type="password" id="login-password" required placeholder="Enter password" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 text-sm">
+            <button type="button" id="toggle-pwd-btn" class="absolute right-3 top-3 text-slate-400 hover:text-white text-sm">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" id="login-btn" class="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/30 transition-all flex items-center justify-center gap-2">
+          <span>Log In to Dashboard</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       AUTHENTICATED ADMIN APP
+       ========================================== -->
+  <div id="admin-app" class="hidden min-h-screen flex flex-col md:flex-row">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="w-full md:w-64 bg-slate-950/90 border-r border-slate-800/80 p-5 flex flex-col justify-between shrink-0">
+      <div>
+        <!-- Admin Brand -->
+        <div class="flex items-center gap-3 pb-6 border-b border-slate-800/80 mb-6">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-cyan-400 p-0.5">
+            <div class="w-full h-full bg-[#0b0f19] rounded-[10px] flex items-center justify-center text-indigo-400 text-sm font-bold">
+              <i class="fa-solid fa-sliders"></i>
+            </div>
+          </div>
+          <div>
+            <h1 class="text-sm font-bold text-white">Admin Control</h1>
+            <span class="text-[11px] text-emerald-400 flex items-center gap-1 font-mono">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Online
+            </span>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="space-y-1.5 text-sm font-medium">
+          <button data-tab="tab-overview" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/60 hover:text-white transition-all active bg-indigo-600 text-white font-semibold">
+            <i class="fa-solid fa-chart-pie w-5 text-center"></i>
+            <span>Overview</span>
+          </button>
+          <button data-tab="tab-about" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/60 hover:text-white transition-all">
+            <i class="fa-solid fa-user w-5 text-center"></i>
+            <span>About & Profile</span>
+          </button>
+          <button data-tab="tab-skills" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/60 hover:text-white transition-all">
+            <i class="fa-solid fa-chart-simple w-5 text-center"></i>
+            <span>Skills & Progress</span>
+          </button>
+          <button data-tab="tab-tools" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/60 hover:text-white transition-all">
+            <i class="fa-solid fa-screwdriver-wrench w-5 text-center"></i>
+            <span>Tools I Use</span>
+          </button>
+          <button data-tab="tab-experience" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/60 hover:text-white transition-all">
+            <i class="fa-solid fa-briefcase w-5 text-center"></i>
+            <span>Experience</span>
+          </button>
+          <button data-tab="tab-projects" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/60 hover:text-white transition-all">
+            <i class="fa-solid fa-diagram-project w-5 text-center"></i>
+            <span>Projects & Studies</span>
+          </button>
+          <button data-tab="tab-education" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/60 hover:text-white transition-all">
+            <i class="fa-solid fa-graduation-cap w-5 text-center"></i>
+            <span>Education</span>
+          </button>
+          <button data-tab="tab-hobbies" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/60 hover:text-white transition-all">
+            <i class="fa-solid fa-icons w-5 text-center"></i>
+            <span>Hobbies</span>
+          </button>
+          <button data-tab="tab-contact" class="tab-btn w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/60 hover:text-white transition-all">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-envelope w-5 text-center"></i>
+              <span>Contact & Inbox</span>
+            </div>
+            <span id="unread-badge" class="px-2 py-0.5 text-[10px] rounded-full bg-cyan-500/20 text-cyan-400 font-mono font-bold">0</span>
+          </button>
+          <button data-tab="tab-settings" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/60 hover:text-white transition-all">
+            <i class="fa-solid fa-shield-halved w-5 text-center"></i>
+            <span>Security & Data</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- Footer Quick Links in Sidebar -->
+      <div class="pt-6 border-t border-slate-800/80 space-y-2">
+        <a href="index.html" target="_blank" class="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 text-xs font-semibold transition-all">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <span>View Live Site</span>
+        </a>
+        <button id="logout-btn" class="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 text-xs font-semibold transition-all">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Log Out</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Panel -->
+    <main class="flex-1 p-6 md:p-10 overflow-y-auto max-h-screen">
+      
+      <!-- Top Action Bar -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-8 border-b border-slate-800/80">
+        <div>
+          <h2 id="current-tab-title" class="text-2xl font-extrabold text-white">Dashboard Overview</h2>
+          <p id="current-tab-desc" class="text-xs text-slate-400 mt-1">Manage, update, add, and delete content across all portfolio sections.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="relative inline-block text-left group">
+            <button class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-2 transition-all">
+              <i class="fa-solid fa-eye text-indigo-400"></i>
+              <span>Preview Pages</span>
+              <i class="fa-solid fa-chevron-down text-[10px] ml-1"></i>
+            </button>
+            <div class="hidden group-hover:block absolute right-0 mt-1 w-44 rounded-xl bg-slate-900 border border-slate-800 shadow-2xl z-50 py-1.5 text-xs text-slate-300">
+              <a href="index.html" target="_blank" class="block px-3.5 py-2 hover:bg-indigo-600 hover:text-white transition-colors">About Page</a>
+              <a href="skills.html" target="_blank" class="block px-3.5 py-2 hover:bg-indigo-600 hover:text-white transition-colors">Skills Page</a>
+              <a href="experience.html" target="_blank" class="block px-3.5 py-2 hover:bg-indigo-600 hover:text-white transition-colors">Experience Page</a>
+              <a href="projects.html" target="_blank" class="block px-3.5 py-2 hover:bg-indigo-600 hover:text-white transition-colors">Projects Page</a>
+              <a href="education.html" target="_blank" class="block px-3.5 py-2 hover:bg-indigo-600 hover:text-white transition-colors">Education Page</a>
+              <a href="hobbies.html" target="_blank" class="block px-3.5 py-2 hover:bg-indigo-600 hover:text-white transition-colors">Hobbies Page</a>
+              <a href="contact.html" target="_blank" class="block px-3.5 py-2 hover:bg-indigo-600 hover:text-white transition-colors">Contact Page</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           TAB 1: OVERVIEW DASHBOARD
+           ========================================== -->
+      <div id="tab-overview" class="tab-content space-y-8">
+        
+        <!-- Quick Stats Cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="glass-panel p-5 rounded-2xl">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-medium text-slate-400 uppercase">Projects</span>
+              <div class="w-9 h-9 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-base">
+                <i class="fa-solid fa-diagram-project"></i>
+              </div>
+            </div>
+            <div id="overview-projects-count" class="text-3xl font-extrabold text-white mt-3">0</div>
+            <span class="text-[11px] text-slate-400">With Case Studies</span>
+          </div>
+
+          <div class="glass-panel p-5 rounded-2xl">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-medium text-slate-400 uppercase">Skills</span>
+              <div class="w-9 h-9 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-base">
+                <i class="fa-solid fa-chart-simple"></i>
+              </div>
+            </div>
+            <div id="overview-skills-count" class="text-3xl font-extrabold text-white mt-3">0</div>
+            <span class="text-[11px] text-slate-400">Active Course Progressions</span>
+          </div>
+
+          <div class="glass-panel p-5 rounded-2xl">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-medium text-slate-400 uppercase">Tools</span>
+              <div class="w-9 h-9 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center text-base">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+              </div>
+            </div>
+            <div id="overview-tools-count" class="text-3xl font-extrabold text-white mt-3">0</div>
+            <span class="text-[11px] text-slate-400">Daily Workflow Items</span>
+          </div>
+
+          <div class="glass-panel p-5 rounded-2xl">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-medium text-slate-400 uppercase">Messages</span>
+              <div class="w-9 h-9 rounded-lg bg-pink-500/10 text-pink-400 flex items-center justify-center text-base">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+            </div>
+            <div id="overview-messages-count" class="text-3xl font-extrabold text-white mt-3">0</div>
+            <span class="text-[11px] text-slate-400">Contact Inquiries</span>
+          </div>
+        </div>
+
+        <!-- Profile Snapshot & Quick Actions -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-2 glass-panel p-6 rounded-2xl">
+            <h3 class="font-bold text-white text-base mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-sparkles text-indigo-400"></i> Current Profile Card
+            </h3>
+            <div class="flex flex-col sm:flex-row items-center gap-6">
+              <img id="overview-avatar" src="" alt="Avatar" class="w-24 h-24 rounded-2xl object-cover border-2 border-indigo-500/40">
+              <div class="space-y-1 text-center sm:text-left">
+                <h4 id="overview-name" class="text-xl font-bold text-white">Alex Rivera</h4>
+                <div id="overview-title" class="text-xs font-mono font-semibold text-indigo-400">Full Stack Developer</div>
+                <p id="overview-bio" class="text-xs text-slate-400 line-clamp-2 mt-1"></p>
+                <div class="pt-2">
+                  <button onclick="switchTab('tab-about')" class="text-xs text-cyan-400 hover:underline font-semibold">
+                    Edit Profile Details &rarr;
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shortcuts -->
+          <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-white text-base mb-3">Quick Actions</h3>
+              <div class="space-y-2">
+                <button onclick="openSkillModal()" class="w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center justify-between">
+                  <span>+ Add New Skill</span>
+                  <i class="fa-solid fa-plus text-indigo-400"></i>
+                </button>
+                <button onclick="openProjectModal()" class="w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center justify-between">
+                  <span>+ Add New Project</span>
+                  <i class="fa-solid fa-plus text-indigo-400"></i>
+                </button>
+                <button onclick="openExperienceModal()" class="w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center justify-between">
+                  <span>+ Add Experience</span>
+                  <i class="fa-solid fa-plus text-indigo-400"></i>
+                </button>
+                <button onclick="openToolModal()" class="w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center justify-between">
+                  <span>+ Add New Tool</span>
+                  <i class="fa-solid fa-plus text-indigo-400"></i>
+                </button>
+              </div>
+            </div>
+            <div class="pt-4 text-[11px] text-slate-500">
+              Changes sync instantly with your database file (`portfolio.json`).
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ==========================================
+           TAB 2: ABOUT SECTION MANAGEMENT
+           ========================================== -->
+      <div id="tab-about" class="tab-content hidden space-y-6">
+        <form id="about-form" class="glass-panel p-6 sm:p-8 rounded-3xl space-y-6">
+          
+          <div class="border-b border-slate-800 pb-4">
+            <h3 class="text-lg font-bold text-white">About & Personal Branding</h3>
+            <p class="text-xs text-slate-400">Configure your profile photo, full name, role title, and biography.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Profile Image Preview & Upload -->
+            <div class="flex flex-col items-center justify-center p-6 bg-slate-900/60 rounded-2xl border border-slate-800">
+              <img id="about-preview-img" src="" alt="Preview" class="w-32 h-32 rounded-2xl object-cover border-2 border-indigo-500/30 mb-4 shadow-lg">
+              
+              <label class="cursor-pointer px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition-all mb-2">
+                <i class="fa-solid fa-upload mr-1.5"></i> Upload Photo
+                <input type="file" id="about-file-upload" accept="image/*" class="hidden">
+              </label>
+              
+              <span class="text-[11px] text-slate-500">or enter an image URL below</span>
+            </div>
+
+            <!-- Basic Details -->
+            <div class="md:col-span-2 space-y-4">
+              <div>
+                <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Image URL</label>
+                <input type="url" id="about-img-url" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Full Name *</label>
+                  <input type="text" id="about-name-input" required class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+                </div>
+                <div>
+                  <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Role / Designation *</label>
+                  <input type="text" id="about-title-input" required placeholder="Full Stack Developer" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Hero Tagline</label>
+                <input type="text" id="about-tagline-input" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+              </div>
+            </div>
+          </div>
+
+          <!-- Bio / Details About Me -->
+          <div>
+            <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Details About Me (Bio)</label>
+            <textarea id="about-bio-input" rows="4" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none leading-relaxed"></textarea>
+          </div>
+
+          <!-- Statistics & Social Profiles -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-800">
+            <div>
+              <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Years Experience</label>
+              <input type="text" id="about-exp-input" placeholder="3+" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Projects Built</label>
+              <input type="text" id="about-proj-input" placeholder="25+" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Satisfied Clients</label>
+              <input type="text" id="about-clients-input" placeholder="20+" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs uppercase font-bold text-slate-400 mb-1">GitHub Profile URL</label>
+              <input type="url" id="about-github-input" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs uppercase font-bold text-slate-400 mb-1">LinkedIn Profile URL</label>
+              <input type="url" id="about-linkedin-input" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+            </div>
+          </div>
+
+          <div class="flex justify-end pt-4">
+            <button type="submit" class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/30 transition-all flex items-center gap-2">
+              <i class="fa-solid fa-floppy-disk"></i>
+              <span>Save About Section</span>
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- ==========================================
+           TAB 3: SKILLS & COURSE PROGRESS
+           ========================================== -->
+      <div id="tab-skills" class="tab-content hidden space-y-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-lg font-bold text-white">Skills & Course Progress</h3>
+            <p class="text-xs text-slate-400">Add, edit, and delete technical skills and course progression metrics.</p>
+          </div>
+          <button onclick="openSkillModal()" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold flex items-center gap-2 shadow-md">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add New Skill</span>
+          </button>
+        </div>
+
+        <!-- Skills Table/List -->
+        <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm text-slate-300">
+              <thead class="bg-slate-900/80 text-xs font-mono uppercase text-slate-400 border-b border-slate-800">
+                <tr>
+                  <th class="py-3.5 px-4">Skill Name</th>
+                  <th class="py-3.5 px-4">Course Name</th>
+                  <th class="py-3.5 px-4">Category</th>
+                  <th class="py-3.5 px-4">Progress (%)</th>
+                  <th class="py-3.5 px-4">Level</th>
+                  <th class="py-3.5 px-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-skills-tbody" class="divide-y divide-slate-800/60 font-sans">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           TAB 4: TOOLS I USE
+           ========================================== -->
+      <div id="tab-tools" class="tab-content hidden space-y-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-lg font-bold text-white">Tools I Use</h3>
+            <p class="text-xs text-slate-400">Manage development software, IDEs, platforms, and utilities.</p>
+          </div>
+          <button onclick="openToolModal()" class="px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold flex items-center gap-2 shadow-md">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add New Tool</span>
+          </button>
+        </div>
+
+        <div id="admin-tools-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- ==========================================
+           TAB 5: PROJECTS & CASE STUDIES
+           ========================================== -->
+      <div id="tab-projects" class="tab-content hidden space-y-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-lg font-bold text-white">Projects & Case Studies</h3>
+            <p class="text-xs text-slate-400">Add, edit, or delete projects with Challenge, Approach, Outcome, and GitHub repos.</p>
+          </div>
+          <button onclick="openProjectModal()" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold flex items-center gap-2 shadow-md">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add New Project</span>
+          </button>
+        </div>
+
+        <div id="admin-projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- ==========================================
+           TAB: PROFESSIONAL EXPERIENCE
+           ========================================== -->
+      <div id="tab-experience" class="tab-content hidden space-y-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-lg font-bold text-white">Professional Experience</h3>
+            <p class="text-xs text-slate-400">Manage work history, company details, key achievements, and skills used.</p>
+          </div>
+          <button onclick="openExperienceModal()" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold flex items-center gap-2 shadow-md">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add Experience</span>
+          </button>
+        </div>
+
+        <div id="admin-experience-container" class="space-y-4">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- ==========================================
+           TAB 6: EDUCATION
+           ========================================== -->
+      <div id="tab-education" class="tab-content hidden space-y-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-lg font-bold text-white">Education & Certifications</h3>
+            <p class="text-xs text-slate-400">Manage academic degrees, universities, timelines, and certifications.</p>
+          </div>
+          <button onclick="openEduModal()" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold flex items-center gap-2 shadow-md">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add Education</span>
+          </button>
+        </div>
+
+        <div id="admin-edu-container" class="space-y-4">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- ==========================================
+           TAB 7: HOBBIES
+           ========================================== -->
+      <div id="tab-hobbies" class="tab-content hidden space-y-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-lg font-bold text-white">Hobbies & Interests</h3>
+            <p class="text-xs text-slate-400">Showcase your personal passions and creative activities.</p>
+          </div>
+          <button onclick="openHobbyModal()" class="px-4 py-2.5 rounded-xl bg-pink-600 hover:bg-pink-500 text-white text-xs font-semibold flex items-center gap-2 shadow-md">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add Hobby</span>
+          </button>
+        </div>
+
+        <div id="admin-hobbies-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- ==========================================
+           TAB 8: CONTACT DETAILS & MESSAGES INBOX
+           ========================================== -->
+      <div id="tab-contact" class="tab-content hidden space-y-8">
+        
+        <!-- Contact Information Form -->
+        <form id="contact-info-form" class="glass-panel p-6 sm:p-8 rounded-2xl space-y-6">
+          <div class="border-b border-slate-800 pb-3">
+            <h3 class="text-base font-bold text-white">Contact Information</h3>
+            <p class="text-xs text-slate-400">Displayed in the portfolio contact section for potential clients and recruiters.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Email-id *</label>
+              <input type="email" id="contact-email-input" required class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Mobile Number *</label>
+              <input type="text" id="contact-phone-input" required class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Location *</label>
+              <input type="text" id="contact-loc-input" required class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Work Availability Status</label>
+            <input type="text" id="contact-avail-input" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+          </div>
+
+          <div class="flex justify-end">
+            <button type="submit" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-all flex items-center gap-2">
+              <i class="fa-solid fa-floppy-disk"></i>
+              <span>Update Contact Info</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Received Messages Inbox -->
+        <div class="glass-panel p-6 sm:p-8 rounded-2xl space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div>
+              <h3 class="text-base font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-inbox text-cyan-400"></i> Received Contact Inquiries
+              </h3>
+              <p class="text-xs text-slate-400">Messages sent by visitors using the portfolio's "Send a message" form.</p>
+            </div>
+          </div>
+
+          <div id="admin-messages-list" class="space-y-3">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ==========================================
+           TAB 9: SECURITY & DATA
+           ========================================== -->
+      <div id="tab-settings" class="tab-content hidden space-y-6">
+        
+        <!-- Change Password Form -->
+        <form id="password-form" class="glass-panel p-6 sm:p-8 rounded-2xl max-w-xl space-y-4">
+          <h3 class="text-base font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-key text-amber-400"></i> Change Admin Password
+          </h3>
+          <p class="text-xs text-slate-400">Ensure a strong password to protect your admin dashboard.</p>
+
+          <div>
+            <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Current Password</label>
+            <input type="password" id="curr-password-input" required class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase font-bold text-slate-400 mb-1">New Password (Min 4 chars)</label>
+            <input type="password" id="new-password-input" required minlength="4" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+          </div>
+
+          <button type="submit" class="px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold text-xs transition-all">
+            Update Password
+          </button>
+        </form>
+
+        <!-- Restore Initial Sample Data -->
+        <div class="glass-panel p-6 sm:p-8 rounded-2xl max-w-xl space-y-3 border-rose-500/20">
+          <h3 class="text-base font-bold text-rose-400 flex items-center gap-2">
+            <i class="fa-solid fa-rotate-left"></i> Reset to Sample Data
+          </h3>
+          <p class="text-xs text-slate-400">If you want to restore the initial rich demo showcase data, click the reset button below.</p>
+          <button id="reset-data-btn" class="px-5 py-2.5 rounded-xl bg-rose-600/20 hover:bg-rose-600 text-rose-300 hover:text-white border border-rose-500/30 text-xs font-semibold transition-all">
+            Reset All Portfolio Data
+          </button>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ==========================================
+       MODALS FOR ADD / EDIT (Skills, Tools, Projects, Education, Hobbies)
+       ========================================== -->
+
+  <!-- Skill Modal -->
+  <div id="modal-skill" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4">
+    <div class="w-full max-w-lg glass-panel p-6 rounded-3xl border border-indigo-500/30 shadow-2xl relative">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
+        <h3 id="modal-skill-title" class="text-base font-bold text-white">Add New Skill</h3>
+        <button onclick="closeModal('modal-skill')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="skill-form" class="space-y-4">
+        <input type="hidden" id="skill-id">
+        <div>
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Skill Name *</label>
+          <input type="text" id="skill-name" required placeholder="e.g. React.js & Next.js" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Course Name / Progression</label>
+          <input type="text" id="skill-course" placeholder="e.g. Modern Full Stack Masterclass" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Course Mastery (%)</label>
+            <div class="flex items-center gap-3">
+              <input type="range" id="skill-progress-range" min="0" max="100" value="85" class="w-full accent-indigo-500">
+              <span id="skill-progress-val" class="text-sm font-mono text-cyan-400 font-bold w-10">85%</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Level</label>
+            <select id="skill-level" class="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Proficient">Proficient</option>
+              <option value="Advanced" selected>Advanced</option>
+              <option value="Expert">Expert</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Category</label>
+          <input type="text" id="skill-category" placeholder="Frontend, Backend, Database..." class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+        </div>
+        <div class="flex justify-end gap-3 pt-3">
+          <button type="button" onclick="closeModal('modal-skill')" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold">Save Skill</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Tool Modal -->
+  <div id="modal-tool" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4">
+    <div class="w-full max-w-md glass-panel p-6 rounded-3xl border border-cyan-500/30 shadow-2xl relative">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
+        <h3 id="modal-tool-title" class="text-base font-bold text-white">Add New Tool</h3>
+        <button onclick="closeModal('modal-tool')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="tool-form" class="space-y-4">
+        <input type="hidden" id="tool-id">
+        <div>
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Tool Name *</label>
+          <input type="text" id="tool-name" required placeholder="e.g. VS Code, Postman" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-cyan-500 focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Category</label>
+          <input type="text" id="tool-category" placeholder="e.g. IDE, DevOps, Testing" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-cyan-500 focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1">FontAwesome Icon Class</label>
+          <input type="text" id="tool-icon" placeholder="fa-solid fa-code" value="fa-solid fa-screwdriver-wrench" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-cyan-500 focus:outline-none font-mono text-xs">
+          <span class="text-[10px] text-slate-500 mt-1 block">e.g. fa-brands fa-github, fa-brands fa-docker, fa-solid fa-database</span>
+        </div>
+        <div>
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Description</label>
+          <textarea id="tool-desc" rows="2" placeholder="Brief note on how you use this tool..." class="w-full px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-cyan-500 focus:outline-none"></textarea>
+        </div>
+        <div class="flex justify-end gap-3 pt-3">
+          <button type="button" onclick="closeModal('modal-tool')" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold">Save Tool</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Project Modal (Complete with Case Study & Image Upload) -->
+  <div id="modal-project" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4 overflow-y-auto">
+    <div class="w-full max-w-2xl my-8 glass-panel p-6 sm:p-8 rounded-3xl border border-indigo-500/30 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-6">
+        <div>
+          <h3 id="modal-project-title" class="text-lg font-bold text-white">Add New Project</h3>
+          <span class="text-xs text-slate-400">Configure project details, languages, and full case study breakdown.</span>
+        </div>
+        <button onclick="closeModal('modal-project')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+
+      <form id="project-form" class="space-y-5">
+        <input type="hidden" id="proj-id">
+
+        <!-- Project Name & Languages -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Project Name *</label>
+            <input type="text" id="proj-name" required placeholder="e.g. NexusCloud Task Suite" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Languages / Tech Used *</label>
+            <input type="text" id="proj-languages" required placeholder="React, Node.js, Express, MongoDB" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+            <span class="text-[10px] text-slate-500 mt-1 block">Comma-separated list</span>
+          </div>
+        </div>
+
+        <!-- Preview Image -->
+        <div>
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Preview Image</label>
+          <div class="flex items-center gap-3">
+            <input type="url" id="proj-image" placeholder="https://..." class="flex-1 px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+            <label class="cursor-pointer px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold shrink-0 transition-all flex items-center gap-1.5">
+              <i class="fa-solid fa-upload"></i> Upload
+              <input type="file" id="proj-image-file" accept="image/*" class="hidden">
+            </label>
+          </div>
+        </div>
+
+        <!-- Short Description -->
+        <div>
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Project Description *</label>
+          <textarea id="proj-desc" rows="3" required placeholder="Comprehensive summary of what the project does..." class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none"></textarea>
+        </div>
+
+        <!-- Case Study Breakdown -->
+        <div class="p-4 rounded-2xl bg-slate-950/60 border border-slate-800 space-y-4">
+          <div class="flex items-center gap-2 text-indigo-400 text-xs font-mono uppercase tracking-wider font-bold">
+            <i class="fa-solid fa-book-open"></i>
+            <span>Case Study Details</span>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-amber-400 mb-1">The Challenge</label>
+            <textarea id="proj-challenge" rows="2" placeholder="What core problem, performance bottleneck or scalability constraint did this address?" class="w-full px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:border-indigo-500 focus:outline-none"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-indigo-400 mb-1">Engineering Approach</label>
+            <textarea id="proj-approach" rows="2" placeholder="What architectural patterns, data models, or technologies did you implement?" class="w-full px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:border-indigo-500 focus:outline-none"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-emerald-400 mb-1">Project Outcome</label>
+            <textarea id="proj-outcome" rows="2" placeholder="Measurable results, latency reductions, user scale, business value..." class="w-full px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:border-indigo-500 focus:outline-none"></textarea>
+          </div>
+        </div>
+
+        <!-- Repo & Live Link -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs uppercase font-bold text-slate-400 mb-1">GitHub Repo Link</label>
+            <input type="url" id="proj-github" placeholder="https://github.com/..." class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Live Demo Link</label>
+            <input type="url" id="proj-demo" placeholder="https://..." class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-3 pt-4 border-t border-slate-800">
+          <button type="button" onclick="closeModal('modal-project')" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold">Cancel</button>
+          <button type="submit" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold">Save Project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Experience Modal -->
+  <div id="modal-experience" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4 overflow-y-auto">
+    <div class="w-full max-w-xl my-8 glass-panel p-6 sm:p-8 rounded-3xl border border-indigo-500/30 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-6">
+        <h3 id="modal-experience-title" class="text-lg font-bold text-white">Add Professional Experience</h3>
+        <button onclick="closeModal('modal-experience')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+
+      <form id="experience-form" class="space-y-4">
+        <input type="hidden" id="exp-id">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Role / Job Title *</label>
+            <input type="text" id="exp-role" required placeholder="e.g. Full Stack Developer" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Company / Organization *</label>
+            <input type="text" id="exp-company" required placeholder="e.g. TechCorp Solutions" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Period / Timeline *</label>
+            <input type="text" id="exp-period" required placeholder="2024 - Present" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Employment Type</label>
+            <input type="text" id="exp-type" placeholder="Full-time, Contract, Internship" value="Full-time" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Location</label>
+            <input type="text" id="exp-location" placeholder="e.g. Bangalore, India (Hybrid)" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Role Overview Description</label>
+          <textarea id="exp-desc" rows="2" placeholder="Summary of overall role and domain..." class="w-full px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none"></textarea>
+        </div>
+        <div>
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Key Contributions & Achievements (1 per line)</label>
+          <textarea id="exp-responsibilities" rows="4" placeholder="Built responsive UI components with React and Tailwind&#10;Engineered RESTful microservices with Node.js&#10;Optimized database indexing reducing query latency" class="w-full px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:border-indigo-500 focus:outline-none font-mono"></textarea>
+          <span class="text-[10px] text-slate-500 mt-1 block">Enter each contribution on a new line</span>
+        </div>
+        <div>
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Technologies Used (Comma-separated)</label>
+          <input type="text" id="exp-skills" placeholder="React, Node.js, Express, MongoDB, Tailwind CSS, Docker" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+        </div>
+        <div class="flex justify-end gap-3 pt-3 border-t border-slate-800">
+          <button type="button" onclick="closeModal('modal-experience')" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold">Save Experience</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Education Modal -->
+  <div id="modal-edu" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4">
+    <div class="w-full max-w-lg glass-panel p-6 rounded-3xl border border-indigo-500/30 shadow-2xl relative">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
+        <h3 id="modal-edu-title" class="text-base font-bold text-white">Add Education Entry</h3>
+        <button onclick="closeModal('modal-edu')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="edu-form" class="space-y-4">
+        <input type="hidden" id="edu-id">
+        <div>
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Degree / Certification *</label>
+          <input type="text" id="edu-degree" required placeholder="e.g. B.Tech Computer Science" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Institution / Academy *</label>
+          <input type="text" id="edu-institution" required placeholder="e.g. Besant Technologies" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Year / Timeline</label>
+            <input type="text" id="edu-year" placeholder="2020 - 2024" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Grade / Honors</label>
+            <input type="text" id="edu-grade" placeholder="CGPA: 8.9 / Distinction" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none">
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Key Details & Specialization</label>
+          <textarea id="edu-details" rows="3" placeholder="Course highlights, key achievements..." class="w-full px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-indigo-500 focus:outline-none"></textarea>
+        </div>
+        <div class="flex justify-end gap-3 pt-3">
+          <button type="button" onclick="closeModal('modal-edu')" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold">Save Education</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Hobby Modal -->
+  <div id="modal-hobby" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4">
+    <div class="w-full max-w-md glass-panel p-6 rounded-3xl border border-pink-500/30 shadow-2xl relative">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
+        <h3 id="modal-hobby-title" class="text-base font-bold text-white">Add Hobby</h3>
+        <button onclick="closeModal('modal-hobby')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="hobby-form" class="space-y-4">
+        <input type="hidden" id="hobby-id">
+        <div>
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Hobby Name *</label>
+          <input type="text" id="hobby-name" required placeholder="e.g. Open Source, Photography" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-pink-500 focus:outline-none">
+        </div>
+        <div>
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1">FontAwesome Icon Class</label>
+          <input type="text" id="hobby-icon" value="fa-solid fa-heart" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-pink-500 focus:outline-none font-mono text-xs">
+          <span class="text-[10px] text-slate-500 mt-1 block">e.g. fa-solid fa-guitar, fa-solid fa-camera-retro, fa-solid fa-pen-nib</span>
+        </div>
+        <div>
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1">Description</label>
+          <textarea id="hobby-desc" rows="2" placeholder="Brief note on your hobby..." class="w-full px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-pink-500 focus:outline-none"></textarea>
+        </div>
+        <div class="flex justify-end gap-3 pt-3">
+          <button type="button" onclick="closeModal('modal-hobby')" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-pink-600 hover:bg-pink-500 text-white text-xs font-semibold">Save Hobby</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Admin Logic -->
+  <script src="js/admin.js"></script>
+</body>
+</html>

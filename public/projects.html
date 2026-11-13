@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects & Case Studies | Full Stack Developer</title>
+  <meta name="description" content="Featured Projects with complete Case Studies (Challenge, Approach, Project Outcome) and GitHub repositories.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              500: '#6366f1',
+              600: '#4f46e5',
+            },
+            accent: {
+              cyan: '#06b6d4',
+              pink: '#ec4899',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col justify-between relative selection:bg-indigo-500 selection:text-white">
+
+  <!-- Ambient Glows -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+
+  <!-- ==========================================
+       TOP NAVIGATION BAR
+       ========================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-cyan-400 p-0.5 shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+          <div class="w-full h-full bg-[#0b0f19] rounded-[10px] flex items-center justify-center font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 text-lg">
+            &lt;/&gt;
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <span id="nav-brand-name" class="font-bold text-lg text-white group-hover:text-indigo-400 transition-colors">Developer</span>
+          <span class="text-xs text-indigo-400 font-mono tracking-wider">FULL STACK</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-2 text-sm font-medium">
+        <a href="index.html" class="px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">About</a>
+        <a href="skills.html" class="px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">Skills</a>
+        <a href="experience.html" class="px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">Experience</a>
+        <a href="projects.html" class="px-3.5 py-2 rounded-xl bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 font-semibold">Projects</a>
+        <a href="education.html" class="px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">Education</a>
+        <a href="hobbies.html" class="px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">Hobbies</a>
+        <a href="contact.html" class="px-3.5 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all">Contact</a>
+      </nav>
+
+      <!-- Admin & Mobile Toggle -->
+      <div class="flex items-center gap-4">
+        <a href="admin.html" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg bg-indigo-500/10 text-indigo-300 hover:bg-indigo-500/20 border border-indigo-500/30 transition-all">
+          <i class="fa-solid fa-gear text-indigo-400"></i>
+          <span>Admin Page</span>
+        </a>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-400 hover:text-white" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-slate-800 px-6 py-5 flex flex-col gap-3 text-sm font-medium text-slate-300">
+      <a href="index.html" class="mobile-nav-link hover:text-indigo-400">About</a>
+      <a href="skills.html" class="mobile-nav-link hover:text-indigo-400">Skills & Tools</a>
+      <a href="experience.html" class="mobile-nav-link hover:text-indigo-400">Experience</a>
+      <a href="projects.html" class="mobile-nav-link text-indigo-400 font-bold">Projects</a>
+      <a href="education.html" class="mobile-nav-link hover:text-indigo-400">Education</a>
+      <a href="hobbies.html" class="mobile-nav-link hover:text-indigo-400">Hobbies</a>
+      <a href="contact.html" class="mobile-nav-link hover:text-indigo-400">Contact</a>
+      <div class="pt-3 border-t border-slate-800">
+        <a href="admin.html" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-lg bg-indigo-600 text-white font-semibold text-xs shadow-md">
+          <i class="fa-solid fa-gear"></i> Admin Dashboard
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       MAIN CONTENT: PROJECTS PAGE
+       ========================================== -->
+  <main class="flex-1 pt-32 pb-24 md:pt-40 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    
+    <!-- Page Header & Filters -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-mono font-semibold text-indigo-400 mb-3">
+          <i class="fa-solid fa-diagram-project"></i> PRODUCTION PORTFOLIO
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">Featured Projects</h1>
+        <p class="text-slate-400 text-base mt-2 max-w-xl">
+          Complete with tech stacks, architectural challenges, engineering solutions, and measurable outcomes.
+        </p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div id="project-filters" class="flex flex-wrap gap-2 text-xs font-medium">
+        <button data-filter="all" class="filter-btn active px-4 py-2.5 rounded-xl bg-indigo-600 text-white shadow-md transition-all">All Projects</button>
+        <button data-filter="React" class="filter-btn px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">React / Next.js</button>
+        <button data-filter="Node.js" class="filter-btn px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Node.js / Express</button>
+        <button data-filter="Full Stack" class="filter-btn px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 transition-all">Full Stack</button>
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="text-center py-16 text-slate-400 col-span-2">
+        <i class="fa-solid fa-spinner fa-spin text-2xl text-indigo-500"></i> Loading projects...
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ==========================================
+       CASE STUDY MODAL (Interactive)
+       ========================================== -->
+  <div id="case-study-modal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4 overflow-y-auto">
+    <div class="relative w-full max-w-3xl my-8 bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl overflow-hidden transform transition-all">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-5 border-b border-slate-800/80 flex items-center justify-between bg-slate-950/70">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-base">
+            <i class="fa-solid fa-book-open"></i>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-indigo-400 uppercase tracking-widest">In-Depth Case Study</span>
+            <h3 id="modal-project-name" class="text-lg font-bold text-white">Project Case Study</h3>
+          </div>
+        </div>
+        <button id="close-modal-btn" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 sm:p-8 space-y-6 max-h-[75vh] overflow-y-auto">
+        
+        <!-- Image Preview & Tech Stack -->
+        <div class="relative rounded-2xl overflow-hidden border border-slate-800 h-56 sm:h-72 w-full bg-slate-950">
+          <img id="modal-project-image" src="" alt="Project Preview" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+          <div id="modal-project-tags" class="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2"></div>
+        </div>
+
+        <!-- Description -->
+        <div>
+          <h4 class="text-xs font-mono uppercase text-slate-400 tracking-wider mb-1">Project Overview</h4>
+          <p id="modal-project-desc" class="text-slate-300 text-sm leading-relaxed"></p>
+        </div>
+
+        <!-- The 3 Pillars: Challenge, Approach, Outcome -->
+        <div class="space-y-4">
+          
+          <div class="p-5 rounded-2xl bg-amber-500/5 border border-amber-500/20">
+            <div class="flex items-center gap-2.5 text-amber-400 font-bold text-sm mb-2">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span>The Challenge</span>
+            </div>
+            <p id="modal-challenge" class="text-slate-300 text-sm leading-relaxed"></p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-indigo-500/5 border border-indigo-500/20">
+            <div class="flex items-center gap-2.5 text-indigo-400 font-bold text-sm mb-2">
+              <i class="fa-solid fa-compass-drafting"></i>
+              <span>Engineering Approach & Architecture</span>
+            </div>
+            <p id="modal-approach" class="text-slate-300 text-sm leading-relaxed"></p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-emerald-500/5 border border-emerald-500/20">
+            <div class="flex items-center gap-2.5 text-emerald-400 font-bold text-sm mb-2">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Measurable Project Outcome</span>
+            </div>
+            <p id="modal-outcome" class="text-slate-300 text-sm leading-relaxed"></p>
+          </div>
+
+        </div>
+
+        <!-- Action Links: GitHub & Demo -->
+        <div class="pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
+          <a id="modal-github-link" href="#" target="_blank" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs flex items-center gap-2 transition-all">
+            <i class="fa-brands fa-github text-base"></i>
+            <span>GitHub Repository</span>
+          </a>
+          <a id="modal-demo-link" href="#" target="_blank" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600 text-white font-medium text-xs flex items-center gap-2 transition-all shadow-md">
+            <span>Live Demonstration</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="py-8 border-t border-slate-900 bg-slate-950 text-slate-400 text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="font-bold text-white text-base">&lt;Full Stack Developer /&gt;</span>
+        <span class="text-xs text-slate-500">&copy; <span id="footer-year">2026</span> All rights reserved.</span>
+      </div>
+      <div class="flex items-center gap-5 text-xs">
+        <a href="index.html" class="hover:text-white transition-colors">About</a>
+        <a href="skills.html" class="hover:text-white transition-colors">Skills</a>
+        <a href="experience.html" class="hover:text-white transition-colors">Experience</a>
+        <a href="projects.html" class="text-indigo-400 font-semibold">Projects</a>
+        <a href="education.html" class="hover:text-white transition-colors">Education</a>
+        <a href="hobbies.html" class="hover:text-white transition-colors">Hobbies</a>
+        <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+        <a href="admin.html" target="_blank" class="text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1">
+          <i class="fa-solid fa-gear text-xs"></i> Admin
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast-container"></div>
+  <script src="js/portfolio.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "fullstack-developer-portfolio",
+  "version": "1.0.0",
+  "description": "Interactive Full Stack Developer Portfolio with dynamic Admin Management Dashboard",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "portfolio",
+    "full-stack",
+    "admin-dashboard",
+    "crud"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}

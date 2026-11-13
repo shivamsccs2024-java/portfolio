@@ -1,0 +1,361 @@
+{
+  "about": {
+    "name": "Alex Rivera",
+    "title": "Full Stack Developer",
+    "tagline": "Crafting resilient, high-performance web applications and delightful digital experiences from end to end.",
+    "image": "uploads/profile.jpg",
+    "bio": "Hello! I am a full-stack developer dedicated to architecting scalable, performant web applications with modern frontend and backend technologies. I bridge creative UI/UX design with reliable backend systems, clean database models, and cloud-ready infrastructure. Always eager to tackle challenging real-world problems and build software that makes a tangible impact.",
+    "experienceYears": "",
+    "completedProjects": "1",
+    "satisfiedClients": "",
+    "resumeUrl": "#",
+    "github": "https://github.com/dashboard",
+    "linkedin": "https://www.linkedin.com/in/siva-kumar-23843118b/",
+    "twitter": "https://twitter.com"
+  },
+  "skills": [
+    {
+      "id": "skill_1",
+      "name": "JavaScript & TypeScript",
+      "course": "Full Stack Modern JavaScript & TypeScript Masterclass",
+      "progress": 92,
+      "category": "Frontend & Backend",
+      "level": "Advanced"
+    },
+    {
+      "id": "skill_2",
+      "name": "React.js & Next.js",
+      "course": "React 18, Server Components & State Architecture",
+      "progress": 90,
+      "category": "Frontend",
+      "level": "Advanced"
+    },
+    {
+      "id": "skill_3",
+      "name": "HTML5, Modern CSS & Tailwind CSS",
+      "course": "Responsive Design, CSS Grid & Animation Systems",
+      "progress": 95,
+      "category": "Frontend",
+      "level": "Expert"
+    },
+    {
+      "id": "skill_4",
+      "name": "Node.js & Express.js",
+      "course": "Microservices & Scalable REST API Architecture",
+      "progress": 88,
+      "category": "Backend",
+      "level": "Advanced"
+    },
+    {
+      "id": "skill_5",
+      "name": "MongoDB & Mongoose",
+      "course": "NoSQL Database Design, Indexing & Aggregation Pipelines",
+      "progress": 85,
+      "category": "Database",
+      "level": "Proficient"
+    },
+    {
+      "id": "skill_6",
+      "name": "SQL & PostgreSQL",
+      "course": "Relational Schema Modeling, ACID Transactions & Optimization",
+      "progress": 80,
+      "category": "Database",
+      "level": "Proficient"
+    },
+    {
+      "id": "skill_7",
+      "name": "RESTful API & GraphQL",
+      "course": "API Design Patterns, Security, JWT & OAuth2",
+      "progress": 86,
+      "category": "Backend",
+      "level": "Advanced"
+    },
+    {
+      "id": "skill_8",
+      "name": "Git, Docker & CI/CD",
+      "course": "Containerization, Automated Workflows & Deployment",
+      "progress": 82,
+      "category": "DevOps & Tools",
+      "level": "Proficient"
+    }
+  ],
+  "tools": [
+    {
+      "id": "tool_1",
+      "name": "VS Code",
+      "category": "Code Editor",
+      "icon": "fa-solid fa-code",
+      "description": "Primary IDE with custom snippets & debugging workflows"
+    },
+    {
+      "id": "tool_2",
+      "name": "Git & GitHub",
+      "category": "Version Control",
+      "icon": "fa-brands fa-github",
+      "description": "Source control, branching strategies & pull request reviews"
+    },
+    {
+      "id": "tool_3",
+      "name": "Postman",
+      "category": "API Testing",
+      "icon": "fa-solid fa-paper-plane",
+      "description": "REST & GraphQL testing, mocking endpoints & automated suites"
+    },
+    {
+      "id": "tool_4",
+      "name": "Docker",
+      "category": "DevOps",
+      "icon": "fa-brands fa-docker",
+      "description": "Containerizing development environments and production images"
+    },
+    {
+      "id": "tool_5",
+      "name": "MongoDB Compass",
+      "category": "Database Management",
+      "icon": "fa-solid fa-database",
+      "description": "Visualizing document structures and analyzing query performance"
+    },
+    {
+      "id": "tool_6",
+      "name": "Figma",
+      "category": "UI/UX Design",
+      "icon": "fa-brands fa-figma",
+      "description": "Wireframing, interactive prototypes and design system handoff"
+    },
+    {
+      "id": "tool_7",
+      "name": "Linux / Bash",
+      "category": "System & Shell",
+      "icon": "fa-brands fa-linux",
+      "description": "CLI administration, bash scripting and remote server management"
+    },
+    {
+      "id": "tool_8",
+      "name": "Vercel / Netlify",
+      "category": "Cloud Hosting",
+      "icon": "fa-solid fa-cloud-arrow-up",
+      "description": "Continuous deployment, serverless functions and edge networking"
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj_1",
+      "name": "NexusCloud - Collaborative Task Suite",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
+      "languages": [
+        "React",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Tailwind CSS",
+        "Socket.io"
+      ],
+      "description": "A real-time project management and Kanban workspace designed for distributed teams to collaborate seamlessly with instant notifications, drag-and-drop boards, and sprint analytics.",
+      "caseStudy": {
+        "challenge": "Distributed teams experienced inconsistent task synchronization states, high server polling load, and laggy rendering when backlogs exceeded several hundred active items.",
+        "approach": "Engineered a WebSocket synchronization protocol with optimistic client-side updates, implemented cursor-based pagination for project boards, and optimized MongoDB query indexes with compound keys.",
+        "outcome": "Achieved sub-100ms real-time state synchronization across all connected clients, decreased server CPU load by 45%, and scaled the system to support 5,000+ simultaneous collaborators with 99.98% uptime."
+      },
+      "github": "https://github.com/developer/nexuscloud-task-suite",
+      "demo": "https://nexuscloud.example.com",
+      "featured": true
+    },
+    {
+      "id": "proj_2",
+      "name": "ShopSphere - Headless E-Commerce Platform",
+      "image": "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=900&q=80",
+      "languages": [
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "PostgreSQL",
+        "Stripe API"
+      ],
+      "description": "An ultra-fast headless e-commerce store featuring real-time inventory management, progressive checkout flow, multi-currency support, and comprehensive merchant revenue dashboards.",
+      "caseStudy": {
+        "challenge": "The previous storefront had a high checkout abandonment rate (68%) caused by sluggish multi-page redirection and frequent inventory mismatches during peak promotional launches.",
+        "approach": "Designed a single-page progressive checkout using Stripe Payment Intents, implemented transactional row locking in PostgreSQL to guarantee atomic stock reductions, and leveraged ISR (Incremental Static Regeneration).",
+        "outcome": "Elevated Lighthouse performance score to 98/100, reduced average checkout completion time by 42%, dropped cart abandonment to 32%, and processed $150k+ in launch transactions without a single stock collision."
+      },
+      "github": "https://github.com/developer/shopsphere-ecommerce",
+      "demo": "https://shopsphere.example.com",
+      "featured": true
+    },
+    {
+      "id": "proj_3",
+      "name": "HealthPulse - Secure Telehealth Consultation Portal",
+      "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80",
+      "languages": [
+        "React",
+        "Express.js",
+        "WebRTC",
+        "PostgreSQL",
+        "Tailwind CSS"
+      ],
+      "description": "A HIPAA-compliant telemedicine platform enabling patients to schedule virtual appointments, attend encrypted HD video calls, and access encrypted electronic medical records.",
+      "caseStudy": {
+        "challenge": "Medical providers needed an ultra-secure, tamper-proof video streaming environment that could reliably operate over low-bandwidth mobile networks while safeguarding confidential health data.",
+        "approach": "Constructed peer-to-peer WebRTC channels with adaptive bitrate streaming and automatic TURN relay fallbacks, implemented AES-256 encrypted storage for consultation notes, and built strict role-based access control.",
+        "outcome": "Successfully hosted over 15,000 secure video consultations with zero security breaches, maintained video clarity on 3G connections, and received a 4.9/5 patient satisfaction score across clinic partners."
+      },
+      "github": "https://github.com/developer/healthpulse-telehealth",
+      "demo": "https://healthpulse.example.com",
+      "featured": true
+    },
+    {
+      "id": "proj_4",
+      "name": "DevMetrics - Developer Insights & Repository Analytics",
+      "image": "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=900&q=80",
+      "languages": [
+        "Vue.js",
+        "Node.js",
+        "GraphQL",
+        "Chart.js",
+        "Tailwind CSS"
+      ],
+      "description": "An interactive analytics dashboard that ingests Git repository metadata to visualize commit velocity, code churn, test coverage, and team productivity trends in real-time.",
+      "caseStudy": {
+        "challenge": "Engineering leaders lacked an intuitive, unified dashboard to detect code bottlenecks, track PR review cycles, and celebrate sprint milestones across dozens of distributed repositories.",
+        "approach": "Connected to GitHub and GitLab GraphQL APIs using asynchronous worker queues, computed rolling code velocity metrics in Redis caches, and rendered high-fps reactive charts.",
+        "outcome": "Shortened average PR turnaround times by 28%, saved engineering managers 4+ hours per sprint in reporting, and earned adoption across 20+ engineering organizations."
+      },
+      "github": "https://github.com/developer/devmetrics-analytics",
+      "demo": "https://devmetrics.example.com",
+      "featured": false
+    }
+  ],
+  "education": [
+    {
+      "id": "edu_1",
+      "degree": "Bachelor of Technology in Computer Science & Engineering",
+      "institution": "Institute of Technology & Science",
+      "year": "2020 - 2024",
+      "grade": "CGPA: 8.9 / 10",
+      "details": "Focused on Data Structures, Algorithms, Database Systems, Computer Networks, and Software Engineering. Lead coordinator for the campus Developers Guild and hackathon finalist."
+    },
+    {
+      "id": "edu_2",
+      "degree": "Full Stack Web Development & Software Architecture",
+      "institution": "Besant Technologies",
+      "year": "2024",
+      "grade": "Certificate of Excellence (Honors)",
+      "details": "Intensive hands-on training across modern JavaScript, React, Node.js, Express, MongoDB, SQL, REST APIs, Git workflows, and cloud application deployment."
+    }
+  ],
+  "experience": [
+    {
+      "id": "exp_1",
+      "role": "Full Stack Developer",
+      "company": "TechNova Innovations",
+      "location": "Bangalore, India",
+      "period": "2024 - Present",
+      "type": "Full-time",
+      "description": "Architecting and scaling responsive web applications, developing microservices, and leading full stack feature delivery.",
+      "responsibilities": [
+        "Engineered robust RESTful APIs with Node.js and Express handling high transaction volumes.",
+        "Built modular, interactive frontend interfaces using React.js and Tailwind CSS with 95+ Lighthouse performance scores.",
+        "Designed MongoDB schemas and aggregation pipelines for optimized query performance.",
+        "Containerized applications using Docker and set up automated GitHub Actions CI/CD workflows."
+      ],
+      "skillsUsed": [
+        "React",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "Tailwind CSS",
+        "Docker",
+        "Git"
+      ]
+    },
+    {
+      "id": "exp_2",
+      "role": "Junior Full Stack Engineer",
+      "company": "Cognitive Cloud Solutions",
+      "location": "Bangalore, India",
+      "period": "2023 - 2024",
+      "type": "Full-time",
+      "description": "Developed dynamic client portals, integrated payment processors, and streamlined SQL database schemas.",
+      "responsibilities": [
+        "Collaborated with UI/UX designers to translate Figma design systems into reusable components.",
+        "Decreased page initial load times by 30% through bundle splitting and image asset caching.",
+        "Integrated third-party authentication and RESTful endpoints with comprehensive error handling."
+      ],
+      "skillsUsed": [
+        "JavaScript",
+        "React",
+        "Node.js",
+        "SQL",
+        "REST APIs",
+        "Git",
+        "Figma"
+      ]
+    }
+  ],
+  "hobbies": [
+    {
+      "id": "hobby_1",
+      "name": "Open Source Contributing",
+      "icon": "fa-solid fa-code-branch",
+      "description": "Collaborating on community libraries, debugging issues, and writing clear developer documentation."
+    },
+    {
+      "id": "hobby_2",
+      "name": "Tech Blogging & Mentoring",
+      "icon": "fa-solid fa-pen-nib",
+      "description": "Publishing in-depth articles on web architecture, JavaScript best practices, and mentoring new coders."
+    },
+    {
+      "id": "hobby_3",
+      "name": "Algorithmic Problem Solving",
+      "icon": "fa-solid fa-puzzle-piece",
+      "description": "Tackling daily challenges on LeetCode and exploring graph theory and dynamic programming."
+    },
+    {
+      "id": "hobby_4",
+      "name": "UI/UX & Interactive Design",
+      "icon": "fa-solid fa-palette",
+      "description": "Experimenting with micro-interactions, motion graphics, and sleek modern typography in Figma."
+    },
+    {
+      "id": "hobby_5",
+      "name": "Landscape & Urban Photography",
+      "icon": "fa-solid fa-camera-retro",
+      "description": "Capturing architectural geometry, street aesthetics, and scenic sunsets during travel."
+    },
+    {
+      "id": "hobby_6",
+      "name": "Acoustic Guitar & Music",
+      "icon": "fa-solid fa-guitar",
+      "description": "Relaxing with fingerstyle acoustic melodies, songwriting, and discovering ambient genres."
+    }
+  ],
+  "contact": {
+    "email": "alex.rivera.dev@example.com",
+    "phone": "+91 98765 43210",
+    "location": "Bangalore, Karnataka, India",
+    "availability": "Open to Full-Time Engineering Roles & Select High-Impact Freelance Contracts"
+  },
+  "messages": [
+    {
+      "id": "msg_1793771421693",
+      "name": "Emily Watson",
+      "email": "emily@innovate.co",
+      "subject": "Full Stack Role",
+      "message": "Hi Alex, we have an exciting project and would love to collaborate!",
+      "date": "4/11/2026, 11:20:21 am",
+      "read": false
+    },
+    {
+      "id": "msg_1",
+      "name": "Sarah Jenkins",
+      "email": "sarah.j@techventures.io",
+      "subject": "Full Stack Developer Opportunity",
+      "message": "Hi Alex, we were impressed by your NexusCloud project and would love to speak with you regarding a Senior Full Stack position on our core team.",
+      "date": "2026-11-02 14:30",
+      "read": false
+    }
+  ],
+  "admin": {
+    "password": "admin123"
+  }
+}
