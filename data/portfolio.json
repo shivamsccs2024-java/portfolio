@@ -1,13 +1,13 @@
 {
   "about": {
-    "name": "Alex Rivera",
-    "title": "Full Stack Developer",
-    "tagline": "Crafting resilient, high-performance web applications and delightful digital experiences from end to end.",
+    "name": "Sivakumar A",
+    "title": "Software Developer",
+    "tagline": "Java Full Stack Developer | Laravel Backend Developer",
     "image": "uploads/profile.jpg",
-    "bio": "Hello! I am a full-stack developer dedicated to architecting scalable, performant web applications with modern frontend and backend technologies. I bridge creative UI/UX design with reliable backend systems, clean database models, and cloud-ready infrastructure. Always eager to tackle challenging real-world problems and build software that makes a tangible impact.",
-    "experienceYears": "",
-    "completedProjects": "1",
-    "satisfiedClients": "",
+    "bio": "I am a passionate Software Developer with 2+ years of professional experience in backend web application development using Laravel and MySQL. I have hands-on experience in developing RESTful APIs, implementing new features, integrating backend APIs with frontend applications, managing databases, and resolving application issues. I have worked with technologies such as PHP, Laravel, JavaScript, Node.js, and React.js. I have also completed Java Full Stack Development training, gaining practical knowledge of Java, Spring Boot, React.js, and MySQL through project development. I enjoy learning new technologies, solving problems, and building efficient and user-friendly web applications. I am currently looking for opportunities to grow as a Full Stack Developer and contribute to real-world software projects.",
+    "experienceYears": "2+",
+    "completedProjects": "3",
+    "satisfiedClients": "1",
     "resumeUrl": "#",
     "github": "https://github.com/dashboard",
     "linkedin": "https://www.linkedin.com/in/siva-kumar-23843118b/",
@@ -15,68 +15,92 @@
   },
   "skills": [
     {
-      "id": "skill_1",
-      "name": "JavaScript & TypeScript",
-      "course": "Full Stack Modern JavaScript & TypeScript Masterclass",
-      "progress": 92,
-      "category": "Frontend & Backend",
-      "level": "Advanced"
+      "id": "skill_1794735555774",
+      "name": "Java",
+      "course": "Java Full Stack",
+      "progress": 70,
+      "category": "Backend",
+      "level": "Intermediate"
     },
     {
-      "id": "skill_2",
-      "name": "React.js & Next.js",
-      "course": "React 18, Server Components & State Architecture",
-      "progress": 90,
-      "category": "Frontend",
-      "level": "Advanced"
-    },
-    {
-      "id": "skill_3",
-      "name": "HTML5, Modern CSS & Tailwind CSS",
-      "course": "Responsive Design, CSS Grid & Animation Systems",
-      "progress": 95,
-      "category": "Frontend",
-      "level": "Expert"
-    },
-    {
-      "id": "skill_4",
-      "name": "Node.js & Express.js",
-      "course": "Microservices & Scalable REST API Architecture",
-      "progress": 88,
+      "id": "skill_1794735594555",
+      "name": "PHP & Laravel Framework",
+      "course": "Professional Experience",
+      "progress": 85,
       "category": "Backend",
       "level": "Advanced"
     },
     {
-      "id": "skill_5",
-      "name": "MongoDB & Mongoose",
-      "course": "NoSQL Database Design, Indexing & Aggregation Pipelines",
+      "id": "skill_1794735639904",
+      "name": "Spring Boot",
+      "course": "Java Full Stack",
+      "progress": 40,
+      "category": "Backend",
+      "level": "Beginner"
+    },
+    {
+      "id": "skill_1794735715450",
+      "name": "Html & Css",
+      "course": "Professional Experience",
+      "progress": 85,
+      "category": "Frontend",
+      "level": "Advanced"
+    },
+    {
+      "id": "skill_1794735770795",
+      "name": "JavaScript",
+      "course": "Java Full Stack",
+      "progress": 75,
+      "category": "Frontend",
+      "level": "Proficient"
+    },
+    {
+      "id": "skill_1794735837276",
+      "name": "React.Js",
+      "course": "Full Stack",
+      "progress": 70,
+      "category": "Frontend",
+      "level": "Proficient"
+    },
+    {
+      "id": "skill_1794735865790",
+      "name": "MySQL",
+      "course": "Professional Experience",
       "progress": 85,
       "category": "Database",
-      "level": "Proficient"
+      "level": "Advanced"
     },
     {
-      "id": "skill_6",
-      "name": "SQL & PostgreSQL",
-      "course": "Relational Schema Modeling, ACID Transactions & Optimization",
-      "progress": 80,
-      "category": "Database",
-      "level": "Proficient"
-    },
-    {
-      "id": "skill_7",
-      "name": "RESTful API & GraphQL",
-      "course": "API Design Patterns, Security, JWT & OAuth2",
-      "progress": 86,
+      "id": "skill_1794735897791",
+      "name": "REST API's",
+      "course": "Professional Experience",
+      "progress": 85,
       "category": "Backend",
       "level": "Advanced"
     },
     {
-      "id": "skill_8",
-      "name": "Git, Docker & CI/CD",
-      "course": "Containerization, Automated Workflows & Deployment",
-      "progress": 82,
-      "category": "DevOps & Tools",
-      "level": "Proficient"
+      "id": "skill_1794736006023",
+      "name": "Git & GitHub",
+      "course": "Professional Experience",
+      "progress": 60,
+      "category": "Version Control System",
+      "level": "Intermediate"
+    },
+    {
+      "id": "skill_1794736054187",
+      "name": "Postman",
+      "course": "Professional Experience",
+      "progress": 90,
+      "category": "API's",
+      "level": "Advanced"
+    },
+    {
+      "id": "skill_1794736097962",
+      "name": "SQL",
+      "course": "Professional Experience",
+      "progress": 85,
+      "category": "Structured Query Language",
+      "level": "Advanced"
     }
   ],
   "tools": [
@@ -139,152 +163,132 @@
   ],
   "projects": [
     {
-      "id": "proj_1",
-      "name": "NexusCloud - Collaborative Task Suite",
+      "id": "proj_1794738078432",
+      "name": "Resume Builder Application",
       "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
       "languages": [
-        "React",
-        "Node.js",
-        "Express",
-        "MongoDB",
-        "Tailwind CSS",
-        "Socket.io"
+        "Laravel",
+        "MySQL",
+        "React.js"
       ],
-      "description": "A real-time project management and Kanban workspace designed for distributed teams to collaborate seamlessly with instant notifications, drag-and-drop boards, and sprint analytics.",
+      "description": "Developed a Resume Builder Web Application using Laravel and MySQL, allowing users to create, customize, and download professional resumes and cover letters. The application provides multiple resume templates, customization options, and subscription-based payment functionality.",
       "caseStudy": {
-        "challenge": "Distributed teams experienced inconsistent task synchronization states, high server polling load, and laggy rendering when backlogs exceeded several hundred active items.",
-        "approach": "Engineered a WebSocket synchronization protocol with optimistic client-side updates, implemented cursor-based pagination for project boards, and optimized MongoDB query indexes with compound keys.",
-        "outcome": "Achieved sub-100ms real-time state synchronization across all connected clients, decreased server CPU load by 45%, and scaled the system to support 5,000+ simultaneous collaborators with 99.98% uptime."
+        "challenge": "User Registration, Login and Authentication.\n\nResume creation and editing with multiple templates.\n\nDynamic resume sections such as Education, Experience, Skills and Projects.\n\nResume customization with different colors, fonts, layouts and background designs.\n\nCover letter creation and customization.\n\nPDF generation and download functionality.\n\nFree one-page resume creation with paid subscription options for additional features.\n\nAdmin dashboard to manage users, templates, categories, sections, banners and subscriptions.\n\nREST API development for frontend and backend integration.\n\nPayment integration and subscription management.",
+        "approach": "",
+        "outcome": ""
       },
-      "github": "https://github.com/developer/nexuscloud-task-suite",
-      "demo": "https://nexuscloud.example.com",
-      "featured": true
-    },
-    {
-      "id": "proj_2",
-      "name": "ShopSphere - Headless E-Commerce Platform",
-      "image": "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=900&q=80",
-      "languages": [
-        "Next.js",
-        "TypeScript",
-        "Node.js",
-        "PostgreSQL",
-        "Stripe API"
-      ],
-      "description": "An ultra-fast headless e-commerce store featuring real-time inventory management, progressive checkout flow, multi-currency support, and comprehensive merchant revenue dashboards.",
-      "caseStudy": {
-        "challenge": "The previous storefront had a high checkout abandonment rate (68%) caused by sluggish multi-page redirection and frequent inventory mismatches during peak promotional launches.",
-        "approach": "Designed a single-page progressive checkout using Stripe Payment Intents, implemented transactional row locking in PostgreSQL to guarantee atomic stock reductions, and leveraged ISR (Incremental Static Regeneration).",
-        "outcome": "Elevated Lighthouse performance score to 98/100, reduced average checkout completion time by 42%, dropped cart abandonment to 32%, and processed $150k+ in launch transactions without a single stock collision."
-      },
-      "github": "https://github.com/developer/shopsphere-ecommerce",
-      "demo": "https://shopsphere.example.com",
-      "featured": true
-    },
-    {
-      "id": "proj_3",
-      "name": "HealthPulse - Secure Telehealth Consultation Portal",
-      "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80",
-      "languages": [
-        "React",
-        "Express.js",
-        "WebRTC",
-        "PostgreSQL",
-        "Tailwind CSS"
-      ],
-      "description": "A HIPAA-compliant telemedicine platform enabling patients to schedule virtual appointments, attend encrypted HD video calls, and access encrypted electronic medical records.",
-      "caseStudy": {
-        "challenge": "Medical providers needed an ultra-secure, tamper-proof video streaming environment that could reliably operate over low-bandwidth mobile networks while safeguarding confidential health data.",
-        "approach": "Constructed peer-to-peer WebRTC channels with adaptive bitrate streaming and automatic TURN relay fallbacks, implemented AES-256 encrypted storage for consultation notes, and built strict role-based access control.",
-        "outcome": "Successfully hosted over 15,000 secure video consultations with zero security breaches, maintained video clarity on 3G connections, and received a 4.9/5 patient satisfaction score across clinic partners."
-      },
-      "github": "https://github.com/developer/healthpulse-telehealth",
-      "demo": "https://healthpulse.example.com",
-      "featured": true
-    },
-    {
-      "id": "proj_4",
-      "name": "DevMetrics - Developer Insights & Repository Analytics",
-      "image": "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=900&q=80",
-      "languages": [
-        "Vue.js",
-        "Node.js",
-        "GraphQL",
-        "Chart.js",
-        "Tailwind CSS"
-      ],
-      "description": "An interactive analytics dashboard that ingests Git repository metadata to visualize commit velocity, code churn, test coverage, and team productivity trends in real-time.",
-      "caseStudy": {
-        "challenge": "Engineering leaders lacked an intuitive, unified dashboard to detect code bottlenecks, track PR review cycles, and celebrate sprint milestones across dozens of distributed repositories.",
-        "approach": "Connected to GitHub and GitLab GraphQL APIs using asynchronous worker queues, computed rolling code velocity metrics in Redis caches, and rendered high-fps reactive charts.",
-        "outcome": "Shortened average PR turnaround times by 28%, saved engineering managers 4+ hours per sprint in reporting, and earned adoption across 20+ engineering organizations."
-      },
-      "github": "https://github.com/developer/devmetrics-analytics",
-      "demo": "https://devmetrics.example.com",
+      "github": "#",
+      "demo": "#",
       "featured": false
+    },
+    {
+      "id": "proj_1",
+      "name": "E-Commerce Application",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
+      "languages": [
+        "Laravel",
+        "PHP",
+        "MySQL",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "jQuery"
+      ],
+      "description": "Developed an E-Commerce Web Application using Laravel and MySQL, providing a platform for customers to browse, search, and purchase products online. The application includes customer management, product management, order processing, secure payment integration, and an admin dashboard to manage overall store operations.",
+      "caseStudy": {
+        "challenge": "User Registration, Login and Two-Factor Authentication (2FA).\n\nProduct browsing, searching, wishlist and shopping cart functionalities.\n\nStripe Payment Gateway integration for secure online transactions.\n\n3D product image integration for interactive product visualization.\n\nOrder management, order cancellation and payment handling.\n\nRegion-based product pricing.\n\nAdmin dashboard for managing products, categories, users, orders and suppliers.\n\nRole-based authentication and authorization.\n\nArtist/Seller registration and product management with revenue-sharing functionality.",
+        "approach": "",
+        "outcome": ""
+      },
+      "github": "#",
+      "demo": "#",
+      "featured": true
     }
   ],
   "education": [
     {
-      "id": "edu_1",
-      "degree": "Bachelor of Technology in Computer Science & Engineering",
-      "institution": "Institute of Technology & Science",
-      "year": "2020 - 2024",
-      "grade": "CGPA: 8.9 / 10",
-      "details": "Focused on Data Structures, Algorithms, Database Systems, Computer Networks, and Software Engineering. Lead coordinator for the campus Developers Guild and hackathon finalist."
+      "id": "edu_1794738156053",
+      "degree": "M.Sc",
+      "institution": "Dr.sns rajalakshmi college of arts and science",
+      "year": "2022 - 2024",
+      "grade": "71%",
+      "details": ""
     },
     {
-      "id": "edu_2",
-      "degree": "Full Stack Web Development & Software Architecture",
-      "institution": "Besant Technologies",
-      "year": "2024",
-      "grade": "Certificate of Excellence (Honors)",
-      "details": "Intensive hands-on training across modern JavaScript, React, Node.js, Express, MongoDB, SQL, REST APIs, Git workflows, and cloud application deployment."
+      "id": "edu_1794738174272",
+      "degree": "B.Sc. Computer Science",
+      "institution": "Dr.sns rajalakshmi college of arts and science",
+      "year": "2016 - 2019",
+      "grade": "70%",
+      "details": ""
     }
   ],
   "experience": [
     {
-      "id": "exp_1",
-      "role": "Full Stack Developer",
-      "company": "TechNova Innovations",
-      "location": "Bangalore, India",
-      "period": "2024 - Present",
+      "id": "exp_1794736908678",
+      "role": "Software engineer trainee",
+      "company": "X-Media Solutions",
+      "location": "Chennai",
+      "period": "2020 October - 2020 Dec",
       "type": "Full-time",
-      "description": "Architecting and scaling responsive web applications, developing microservices, and leading full stack feature delivery.",
+      "description": "Assisted in developing and maintaining web applications using Laravel and MySQL.",
+      "responsibilities": [],
+      "skillsUsed": [
+        "PHP",
+        "Laravel",
+        "MySQL",
+        "SQL",
+        "HTML & CSS"
+      ]
+    },
+    {
+      "id": "exp_1",
+      "role": "Software Developer",
+      "company": "Blind Matrix",
+      "location": "Chennai",
+      "period": "2024 July - 2024 Aug",
+      "type": "Full-time",
+      "description": "My primary role was Laravel Backend Developer.\nDeveloping and maintaining backend modules using Laravel.",
       "responsibilities": [
-        "Engineered robust RESTful APIs with Node.js and Express handling high transaction volumes.",
-        "Built modular, interactive frontend interfaces using React.js and Tailwind CSS with 95+ Lighthouse performance scores.",
-        "Designed MongoDB schemas and aggregation pipelines for optimized query performance.",
-        "Containerized applications using Docker and set up automated GitHub Actions CI/CD workflows."
+        "Developing and maintaining backend modules using Laravel.",
+        "Creating and integrating REST APIs with frontend applications.",
+        "Working with MySQL database and writing queries.",
+        "Implementing authentication and authorization features.",
+        "Integrating payment gateway functionalities.",
+        "Implementing Laravel Task Scheduler and Cron Jobs.",
+        "Fixing QA-reported issues and resolving bugs."
       ],
       "skillsUsed": [
-        "React",
-        "Node.js",
-        "Express.js",
-        "MongoDB",
-        "Tailwind CSS",
-        "Docker",
-        "Git"
+        "Laravel",
+        "MySQL",
+        "React. Js"
       ]
     },
     {
       "id": "exp_2",
-      "role": "Junior Full Stack Engineer",
-      "company": "Cognitive Cloud Solutions",
-      "location": "Bangalore, India",
-      "period": "2023 - 2024",
+      "role": "Software Developer",
+      "company": "Colan Infotech",
+      "location": "Chennai",
+      "period": "2021 Jan - 2023 March",
       "type": "Full-time",
-      "description": "Developed dynamic client portals, integrated payment processors, and streamlined SQL database schemas.",
+      "description": "My primary role was Laravel Backend Developer.\nDeveloping and maintaining backend modules using Laravel.",
       "responsibilities": [
-        "Collaborated with UI/UX designers to translate Figma design systems into reusable components.",
-        "Decreased page initial load times by 30% through bundle splitting and image asset caching.",
-        "Integrated third-party authentication and RESTful endpoints with comprehensive error handling."
+        "Developed and implemented Two-Factor Authentication (2FA) to enhance application security and prevent unauthorized access.",
+        "Integrated Stripe Payment Gateway to process secure online payments and handled payment-related issues.",
+        "Worked on 3D Product Image Integration, enabling users to view and interact with 3D product designs.",
+        "Implemented User Authentication and Authorization to manage secure login, access control, roles, and permissions.",
+        "Developed and maintained RESTful APIs for frontend and backend communication.",
+        "Implemented backend business logic, database operations, and validation using Laravel and MySQL.",
+        "Integrated third-party services and handled API request/response processing.",
+        "Identified, debugged, and resolved application issues, including payment and authentication-related bugs.",
+        "Performed API testing using Postman and supported application quality assurance.",
+        "Collaborated with frontend developers to integrate backend functionalities and deliver new features."
       ],
       "skillsUsed": [
-        "JavaScript",
-        "React",
-        "Node.js",
+        "Laravel",
         "SQL",
+        "MySQL",
+        "Html & CSS",
         "REST APIs",
         "Git",
         "Figma"
@@ -293,47 +297,23 @@
   ],
   "hobbies": [
     {
-      "id": "hobby_1",
-      "name": "Open Source Contributing",
-      "icon": "fa-solid fa-code-branch",
-      "description": "Collaborating on community libraries, debugging issues, and writing clear developer documentation."
-    },
-    {
-      "id": "hobby_2",
-      "name": "Tech Blogging & Mentoring",
-      "icon": "fa-solid fa-pen-nib",
-      "description": "Publishing in-depth articles on web architecture, JavaScript best practices, and mentoring new coders."
-    },
-    {
       "id": "hobby_3",
       "name": "Algorithmic Problem Solving",
       "icon": "fa-solid fa-puzzle-piece",
       "description": "Tackling daily challenges on LeetCode and exploring graph theory and dynamic programming."
     },
     {
-      "id": "hobby_4",
-      "name": "UI/UX & Interactive Design",
-      "icon": "fa-solid fa-palette",
-      "description": "Experimenting with micro-interactions, motion graphics, and sleek modern typography in Figma."
-    },
-    {
-      "id": "hobby_5",
-      "name": "Landscape & Urban Photography",
-      "icon": "fa-solid fa-camera-retro",
-      "description": "Capturing architectural geometry, street aesthetics, and scenic sunsets during travel."
-    },
-    {
-      "id": "hobby_6",
-      "name": "Acoustic Guitar & Music",
-      "icon": "fa-solid fa-guitar",
-      "description": "Relaxing with fingerstyle acoustic melodies, songwriting, and discovering ambient genres."
+      "id": "hobby_1794738219008",
+      "name": "Playing Chess",
+      "icon": "fa-solid fa-heart",
+      "description": ""
     }
   ],
   "contact": {
-    "email": "alex.rivera.dev@example.com",
-    "phone": "+91 98765 43210",
-    "location": "Bangalore, Karnataka, India",
-    "availability": "Open to Full-Time Engineering Roles & Select High-Impact Freelance Contracts"
+    "email": "shivamsccs2024@gmail.com",
+    "phone": "+91 7558181337",
+    "location": "Chennai",
+    "availability": "Available for Software developer Opportunities"
   },
   "messages": [
     {
