@@ -184,7 +184,7 @@
     {
       "id": "proj_1",
       "name": "E-Commerce Application",
-      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
+      "image": "public/assets/p1.jpeg",
       "languages": [
         "Laravel",
         "PHP",
@@ -224,23 +224,6 @@
     }
   ],
   "experience": [
-    {
-      "id": "exp_1794736908678",
-      "role": "Software engineer trainee",
-      "company": "X-Media Solutions",
-      "location": "Chennai",
-      "period": "2020 October - 2020 Dec",
-      "type": "Full-time",
-      "description": "Assisted in developing and maintaining web applications using Laravel and MySQL.",
-      "responsibilities": [],
-      "skillsUsed": [
-        "PHP",
-        "Laravel",
-        "MySQL",
-        "SQL",
-        "HTML & CSS"
-      ]
-    },
     {
       "id": "exp_1",
       "role": "Software Developer",
